@@ -1,0 +1,89 @@
+<br /><br />
+<div class="row" *ngIf="isAdmin()" >
+  
+  <div class="col-md-3">
+    <h2>Fatura Kesme Sayfası</h2>
+
+    <form [formGroup]="addFormGroup">
+      <div class="mt-2">
+        <label for="tc">Müşteri</label>
+        <select id="tc" name="tc" class="form-select" formControlName="tc" >
+          <option
+            *ngFor="let musteri of musteriler"
+           
+            [value]="musteri.tc" 
+          >
+            {{ musteri.ad + " "+musteri.soyad}}
+            
+          </option>
+        </select>
+      </div>
+      <div>
+        
+      </div>
+     
+      <div class="mt-2">
+        <label for="donemAdi">Dönem</label>
+        <select id="donemAdi" name="donemAdi" class="form-select" formControlName="donemAdi">
+          <option value="Ocak">Ocak</option>
+          <option value="Şubat">Şubat</option>
+          <option value="Mart">Mart</option>
+          <option value="Nisan">Nisan</option>
+          <option value="Mayıs">Mayıs</option>
+          <option value="Haziran">Haziran</option>
+          <option value="Temmuz">Temmuz</option>
+          <option value="Ağustos">Ağustos</option>
+          <option value="Eylül">Eylül</option>
+          <option value="Ekim">Ekim</option>
+          <option value="Kasım">Kasım</option>
+          <option value="Aralık">Aralık</option>
+        </select>
+      </div>
+      
+
+      
+      
+      <div>
+        <button class="btn btn-success mt-2"  (click)="add()" >Fatura Kes</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-9">
+    <h3>Detaylı Müşteri Listesi</h3>
+    <input
+      type="text"
+      id="filterText"
+      [(ngModel)]="filterText"
+      placeholder="Arama metni giriniz"
+      class="form-control"
+    />
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Ad</th>
+          <th>Soyad</th>
+          <th>TC</th>
+          <th>GSM No</th>
+          <th>Tarife Adı</th>
+          <th>Başlangıç</th>
+          <th>Bitiş</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let musteri of MusteriTarifeDto">
+          <td>{{ musteri.musteriTarifeId }}</td>
+          <td>{{ musteri.ad }}</td>
+          <td>{{ musteri.soyad }}</td>
+          <td>{{ musteri.tc }}</td>
+          <td>{{ musteri.gsMno }}</td>
+          <td>{{ musteri.tarifeAdi }}</td>
+          <td>{{ musteri.baslangic }}</td>
+          <td>{{ musteri.bitis }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

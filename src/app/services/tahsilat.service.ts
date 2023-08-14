@@ -4,29 +4,29 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplatesService } from './templates.service';
 import { Tahsilat } from '../models/entities/tahsilat';
 import { ListResponseModel } from '../models/result/list-response-model';
-import { BaseUrl } from '../models/constants/urls';
-import { Observable } from 'rxjs';
+import { ApiUrl, BaseUrl } from '../models/constants/urls';
+import { Observable,timer } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TahsilatService {
-  url= BaseUrl+"tahsilat/"
+  url= ApiUrl+"tahsilat/"
   constructor(private httpClient:HttpClient,private toastrService:ToastrService,private templatesService:TemplatesService) { }
   add(tahsilat:Tahsilat){
     this.httpClient.post<ListResponseModel<Tahsilat>>(this.url+"add",tahsilat).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   delete(tahsilat:Tahsilat){
     this.httpClient.post<ListResponseModel<Tahsilat>>(this.url+"delete",tahsilat).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   update(tahsilat:Tahsilat){
     this.httpClient.post<ListResponseModel<Tahsilat>>(this.url+"update",tahsilat).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   getAll():Observable<ListResponseModel<Tahsilat>>{

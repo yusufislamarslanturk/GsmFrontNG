@@ -4,5 +4,4 @@ export interface MusteriTarife{
     tarifeId:number
     baslangic:Date
     bitis:Date
-    tc:number
 }

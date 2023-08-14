@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TemplatesService } from './templates.service';
-import { Observable } from 'rxjs';
+import { Observable,timer } from 'rxjs';
 import { ApiUrl } from '../models/constants/urls';
 import { ListResponseModel } from './../models/result/list-response-model';
 import { HttpClient } from '@angular/common/http';
@@ -19,19 +19,19 @@ export class FaturaService {
   add(fatura:Fatura) {
     this.httpClient.post<ResponseModel>(this.url + "add", fatura).subscribe(response => {
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     }, errorResponse => this.templatesService.errorResponse(errorResponse));
   }
   update(fatura:Fatura){
     this.httpClient.post<ResponseModel>(this.url +"update",fatura).subscribe(response=>{
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   delete(fatura:Fatura){
     this.httpClient.post<ResponseModel>(this.url +"delete",fatura).subscribe(response=>{
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   getAll(): Observable<ListResponseModel<Fatura>> {

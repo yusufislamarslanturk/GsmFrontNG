@@ -1,0 +1,56 @@
+<div class="col-md-12" *ngIf="isAdmin()">
+  <br /><br>
+
+  
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <h3 style="margin-right: 900px;">Tarife Listesi</h3>
+    <app-yeni-tarife-ekleme
+    classFromParent="btn btn-outline-success"
+  ></app-yeni-tarife-ekleme>
+  </div>
+  <br>
+  <input
+    type="text"
+    id="filterText"
+    [(ngModel)]="filterText"
+    placeholder="Arama metni giriniz"
+    class="form-control"
+  />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sıra No</th>
+        <th>Tarife Adı</th>
+        <th>Tarife Sms</th>
+        <th>Tarife Dakika</th>
+        <th>Tarife İnternet</th>
+        <th>Tarife Ücreti</th>
+        <th>Ek seçenekler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarife of tarifeler|tarifelerFilter:filterText">
+        <td>{{ tarife.tarifeId }}</td>
+        <td>{{ tarife.tarifeAdi }}</td>
+        <td>{{ tarife.tarifeSms }}</td>
+        <td>{{ tarife.tarifeDk }}</td>
+        <td>{{ tarife.tarifeInternet }}</td>
+        <td>{{ tarife.tarifeUcreti }}</td>
+        <td>
+          <app-tarife-update
+            classFromParent="btn btn-warning"
+            [currentTarifeFromParent]="getByIdFromInMemory(tarife.tarifeId)"
+          ></app-tarife-update>
+        </td>
+             <td>
+          <app-tarife-delete
+            classFromParent="btn btn-danger"
+            [currentTarifeFromParent]="getByIdFromInMemory(tarife.tarifeId)"
+          ></app-tarife-delete>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

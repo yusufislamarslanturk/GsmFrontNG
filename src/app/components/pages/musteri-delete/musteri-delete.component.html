@@ -1,0 +1,23 @@
+<button type="button" [class]="classFromParent" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteCarModal'+currentMusteriFromParent.musteriId" >
+    {{innerHTML}}
+</button> 
+  
+<!-- Modal -->
+<div class="modal fade" [id]="'deleteCarModal'+currentMusteriFromParent.musteriId" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <strong>{{currentMusteriFromParent.ad}} {{currentMusteriFromParent.soyad}}</strong> isimli kullanıcı silinecek...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" (click)="sil()">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,7 @@ import { Injectable } from '@angular/core';
 import { SingleResponseModel } from '../models/result/single-response-model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UpdatePasswordDTO } from '../models/entities/dtos/update-password-dto';
+import { timer } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,9 @@ export class AuthService {
   login(loginDTO: LoginDTO) {
     this.httpClient.post<SingleResponseModel<AccessToken>>(this.url + "login", loginDTO).subscribe(response => {
       this.localStorageService.save(TokenKey, response.data.token);
+  
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(500).subscribe(x => { this.routerService.homePage()})
     }, errorResponse => this.templatesService.errorResponse(errorResponse))
   }
 
@@ -77,11 +79,8 @@ export class AuthService {
 
   isAdmin() {
     if (!this.loggedIn()) return false
-
     let decodedToken = this.getDecodedToken
-
     let roleString = Object.keys(decodedToken).filter(t => t.endsWith("/role"))[0]
-
     if (roleString)
       for (let i = 0; i < decodedToken[roleString].length; i++)
         if (decodedToken[roleString][i] === AdminRole) return true

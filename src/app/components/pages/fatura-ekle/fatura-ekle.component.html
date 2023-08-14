@@ -1,7 +1,8 @@
 <br /><br />
-<div class="row">
+<div class="row" *ngIf="isAdmin()">
+  
   <div class="col-md-4">
-    <h1>Fatura Atama Sayfası</h1>
+    <h2>Tarife Atama Sayfası</h2>
 
     <form [formGroup]="addFormGroup">
       <div class="mt-2">
@@ -77,6 +78,7 @@
           <th>TC</th>
           <th>GSM No</th>
           <th>E-Mail</th>
+          
         </tr>
       </thead>
       <tbody>

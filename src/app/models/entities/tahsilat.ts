@@ -4,5 +4,5 @@ export interface Tahsilat{
     faturaId:number
     tahsilTarihi:Date
     tarifeUcreti:number
-    TC:number
+    tc:string
 }

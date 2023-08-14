@@ -1,0 +1,93 @@
+<button type="button" [class]="classFromParent" data-bs-toggle="modal" data-bs-target="#updateCarModal" >
+  {{innerHTML}}
+</button>
+
+<div class="modal fade" id="updateCarModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Yeni Tarife Ekle</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+  <form [formGroup]="addFormGroup">
+    <div class="mt-2">
+      <label for="tarifeAdi">Tarife Adı</label>
+      <input
+        type="text"
+        id="tarifeAdi"
+        name="tarifeAdi"
+        class="form-control"
+        placeholder="Tarife Adı"
+        formControlName="tarifeAdi"
+      />
+    </div>
+
+    <label for="tarifeUcreti">Tarife Ücreti</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">₺</span>
+      <input
+        type="number"
+        class="form-control"
+        aria-label="Amount (to the nearest dollar)"
+        class="form-control"
+        formControlName="tarifeUcreti"
+      />
+      <span class="input-group-text">.00</span>
+    </div>
+
+    <label for="tarifeInternet">Tarife İnternet Bilgisi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">MB</span>
+      <input
+        type="number"
+        class="form-control"
+        class="form-control"
+        formControlName="tarifeInternet"
+      />
+      <span class="input-group-text">.00</span>
+    </div>
+
+    <label for="tarifeSms">Tarife Sms Bilgisi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Adet</span>
+      <input
+        type="number"
+        class="form-control"
+        class="form-control"
+        formControlName="tarifeSms"
+      />
+    </div>
+
+    <label for="tarifeDk">Tarife Dakika Bilgisi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Dk</span>
+      <input
+        type="number"
+        class="form-control"
+        class="form-control"
+        formControlName="tarifeDk"
+      />
+      <span class="input-group-text">.00</span>
+    </div>
+
+    <label for="tarifeSuresi">Tarife Süre Bilgisi</label>
+     
+    <div class="input-group mb-3">
+      
+      <span class="input-group-text">Ay</span>
+      <input
+        type="number"
+        class="form-control"
+        class="form-control"
+        formControlName="tarifeSuresi"
+      />
+    </div>
+ 
+      <button class="btn btn-success mt-3" (click)="add()">Ekle</button>
+    
+  </form>
+</div>
+

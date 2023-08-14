@@ -1,0 +1,19 @@
+<div class="dropdown" *ngIf="isAdmin()">
+    <button [class]="classFromParent" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      {{innerHTML}}
+    </button>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+        <li><a class="dropdown-item" href="tarife-ata">Müşteriye Tarife Atama İşlemleri</a></li>
+        <li><a class="dropdown-item" href="musteri-detail">Müşteri İşlemleri</a></li>
+        <li><a class="dropdown-item" href="tarife-detail">Tarife İşlemleri</a></li>
+        <li><a class="dropdown-item" href="fatura-ode">Ödeme İşlemleri</a></li>
+        <li><a class="dropdown-item" href="tahsilat-detail">Tahsilat Listesi</a></li>
+        <li><a class="dropdown-item" href="fatura-kes">Fatura Atama Listesi</a></li>
+
+
+    </ul>
+  </div>
+
+  

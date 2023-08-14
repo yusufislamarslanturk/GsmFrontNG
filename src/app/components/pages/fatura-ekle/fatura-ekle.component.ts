@@ -11,13 +11,15 @@ import { MusteriTarifeService } from 'src/app/services/musteri-tarife.service';
 import { MusteriService } from 'src/app/services/musteri.service';
 import { TarifeService } from 'src/app/services/tarife.service';
 import { TemplatesService } from 'src/app/services/templates.service';
+import { AdminChildComponentBaseComponent } from '../../admin/bases/admin-child-component-base/admin-child-component-base.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-fatura-ekle',
   templateUrl: './fatura-ekle.component.html',
   styleUrls: ['./fatura-ekle.component.css'],
 })
-export class FaturaEkleComponent implements OnInit {
+export class FaturaEkleComponent extends AdminChildComponentBaseComponent implements OnInit {
   @Input()
   currentCarFromParent: Fatura;
   faturalar: Fatura[];
@@ -33,8 +35,11 @@ export class FaturaEkleComponent implements OnInit {
     private musteriService: MusteriService,
     private faturaService: FaturaService,
     private templatesService:TemplatesService,
-    private musteriTarifeService:MusteriTarifeService
-  ) {}
+    private musteriTarifeService:MusteriTarifeService,
+    public override authService:AuthService
+  ) {
+    super(authService)
+  }
 
   ngOnInit(): void {
   

@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
-
   constructor() { }
 
   save(key: string, value: any) {
@@ -19,13 +18,14 @@ export class LocalStorageService {
   }
 
   get(key: string): any {
-    let json = (localStorage.getItem(key))||'{}'
+    let json = localStorage.getItem(key)
+   
     let value = JSON.parse(json);
     return value;
   }
 
   getWithType<T>(key: string): T {
-    let json = localStorage.getItem(key)||'{}'
+    let json = localStorage.getItem(key)
     let value: T = Object.assign({}, JSON.parse(json))
     return value;
   }

@@ -1,0 +1,74 @@
+<button type="button" [class]="classFromParent" data-bs-toggle="modal" [attr.data-bs-target]="'#addMusteriModal'+currentMusteriFromParent.musteriId" >
+    {{innerHTML}}
+  </button>
+
+  <div class="modal fade" [id]="'addMusteriModal'+currentMusteriFromParent.musteriId" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Müşteri Bilgilerini Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+    <form [formGroup]="addFormGroup">
+      
+      <div class="mt-2">
+        <label for="ad">Müşteri Adı</label>
+        <input
+          type="text"
+          id="ad"
+          name="ad"
+          class="form-control"
+          placeholder="Müşteri Ad"
+          formControlName="ad"
+        />
+      </div>
+      <div class="mt-2">
+        <label for="soyad">Müşteri Soyadı</label>
+        <input
+          type="text"
+          id="soyad"
+          name="soyad"
+          class="form-control"
+          placeholder="Müşteri Soyad"
+          formControlName="soyad"
+        />
+      </div>
+      <div class="mt-2">
+        <label for="tc">Müşteri T.C. Bilgisi</label>
+        <input
+          type="number"
+          id="tc"
+          name="tc"
+          class="form-control"
+          placeholder="Müşteri Tc"
+          formControlName="tc"
+        />
+      </div>
+      <div class="mt-2">
+        <label for="email">Müşteri E-Mail</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="Müşteri E-Mail"
+          formControlName="email"
+        />
+      </div>
+      <div class="mt-2">
+        <label for="gsMno">Müşteri Telefon Numarası</label>
+        <input
+          type="text"
+          id="gsMno"
+          name="gsMno"
+          class="form-control"
+          placeholder="Müşteri Telefon Numarası"
+          formControlName="gsMno"
+        />
+      </div>
+        <button class="btn btn-success mt-3" (click)="update()">Güncelle</button>
+    </form>
+  </div>
+  

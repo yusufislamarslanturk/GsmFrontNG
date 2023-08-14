@@ -5,5 +5,5 @@ export interface Fatura{
     donemUcreti:number
     donemAdi:string
     odendiMi:boolean
-    tc:number
+    tc:string
 }

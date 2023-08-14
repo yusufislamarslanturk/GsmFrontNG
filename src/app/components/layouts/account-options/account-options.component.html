@@ -1,0 +1,16 @@
+<div class="btn-group" *ngIf="loggedIn()&&currenUserDTO">
+    <img height="50px" width="50px" src="assets/images/profile.jpg">
+    
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      {{currenUserDTO.firstName}} {{currenUserDTO.lastName}}
+    </button>
+    
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><div class="dropdown-item"><div type="button" (click)="routeToProfilePage()" *ngIf="loggedIn()" [class]="classFromParent">Profil Bilgileri</div></div></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><div class="dropdown-item"><div type="button" [class]="classFromParent" (click)="logout()" *ngIf="loggedIn()">Çıkış Yap</div></div></li>
+    </ul>
+    
+  </div>

@@ -8,6 +8,7 @@ import { SingleResponseModel } from '../models/result/single-response-model';
 import { ResponseModel } from '../models/result/response_model';
 import { ToastrService } from 'ngx-toastr';
 import { MusteriTarife } from '../models/entities/musteriTarife';
+import { MusteriTarifeDto } from '../models/entities/dtos/musteri-tarife-dto';
 
 
 
@@ -22,7 +23,7 @@ export class MusteriTarifeService {
   delete(MusteriTarife:MusteriTarife){
     this.httpClient.post<ResponseModel>(this.url +"delete",MusteriTarife).subscribe(response=>{
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
    add(MusteriTarife:MusteriTarife){
@@ -34,7 +35,7 @@ export class MusteriTarifeService {
   update(MusteriTarife:MusteriTarife){
     this.httpClient.post<ResponseModel>(this.url +"update",MusteriTarife).subscribe(response=>{
       this.toastrService.success(response.message)
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   getAll(): Observable<ListResponseModel<MusteriTarife>> {
@@ -42,5 +43,8 @@ export class MusteriTarifeService {
   }
   getById(id:number): Observable<ListResponseModel<MusteriTarife>> {
     return this.httpClient.get<ListResponseModel<MusteriTarife>>(this.url + "getallbyid?id="+id)
+  }
+  getDetails(): Observable<ListResponseModel<MusteriTarifeDto>> {
+    return this.httpClient.get<ListResponseModel<MusteriTarifeDto>>(this.url + "getdetails")
   }
 }

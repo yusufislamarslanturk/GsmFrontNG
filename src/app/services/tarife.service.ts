@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { TemplatesService } from './templates.service';
-import{Observable} from 'rxjs'
+import{Observable,timer} from 'rxjs'
 import { ListResponseModel } from '../models/result/list-response-model';
 import { Tarife } from '../models/entities/tarife';
 import { ApiUrl, BaseUrl } from '../models/constants/urls';
@@ -22,17 +22,17 @@ export class TarifeService {
   }
   add(tarife : Tarife){
     return this.httpClient.post<ResponseModel>(this.url+"add",tarife).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   delete(tarife:Tarife){
     return this.httpClient.post<ResponseModel>(this.url+"delete",tarife).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
   update(tarife:Tarife){
     return this.httpClient.post<ResponseModel>(this.url+"update",tarife).subscribe(response=>{
-      window.location.reload()
+      timer(2000).subscribe(x => {window.location.reload()})
     },errorResponse=>this.templatesService.errorResponse(errorResponse))
   }
 }

@@ -1,11 +1,11 @@
-<br /><br />
+<!-- <br /><br />
 <div class="row">
   <div class="col-md-4">
     <h1>Fatura Ödeme Sayfası</h1>
 
     <form [formGroup]="updateFormGroup">
       <div class="mt-2">
-        <label for="musteriId">Müşteri</label>
+        <label for="musteriId">Müşteri </label>
         <select
           id="musteriId"
           name="musteriId"
@@ -21,7 +21,7 @@
           </option>
         </select>
       </div>
-      <span *ngFor="let c selectedTc"> </span>
+    
    
 
      
@@ -37,44 +37,52 @@
         />
       </div>
     
-
+       
       <div>
         <button class="btn btn-success mt-2" (click)="update()">Ekle</button>
       </div>
     </form>
-  </div>
+  </div> -->
 
-  <div class="col-md-8">
-    <h3>Fatura Listesi</h3>
-    <input
-      type="text"
-      id="filterText"
-      placeholder="Arama metni giriniz"
-      class="form-control"
-    />
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>TC</th>
-          <th>Tarife ID</th>
-          <th>TC</th>
-          <th>Donem Ücreti</th>
-          <th>Donem Adı</th>
-          <th>Ödenme Durumu</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let fatura of faturalar">
-          <td>{{ fatura.faturaId }}</td>
-          <td>{{ fatura.tc }}</td>
-          <td>{{ fatura.tarifeId }}</td>
-          <td>{{ fatura.musteriTarifeId }}</td>
-          <td>{{ fatura.donemUcreti }}</td>
-          <td>{{ fatura.donemAdi }}</td>
-          <td *ngIf="fatura.odendiMi">Ödendi</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="col-md-12" *ngIf="isAdmin()">
+  <br />
+  <h3>Fatura Listesi</h3>
+  <input
+    type="text"
+    id="filterText"
+    [(ngModel)]="filterText"
+    placeholder="Arama metni giriniz"
+    class="form-control"
+  />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>TC</th>
+        <th>Tarife ID</th>
+        <th>Donem Ücreti</th>
+        <th>Donem Adı</th>
+        <th>Ödenme Durumu</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fatura of faturalar|faturalarFilter:filterText">
+        <td>{{ fatura.faturaId }}</td>
+        <td>{{ fatura.tc }}</td>
+        <td>{{ fatura.tarifeId }}</td>
+        <td>{{ fatura.donemUcreti }}</td>
+        <td>{{ fatura.donemAdi }}</td>
+        <td *ngIf="fatura.odendiMi === false">
+          <app-fatura-odeme-router
+            classFromParent="btn btn-warning"
+            [currentFaturaFromParent]="getByIdFromInMemory(fatura.faturaId)"
+          ></app-fatura-odeme-router>
+        </td>
+        <td *ngIf="fatura.odendiMi === true">
+          <button type="button" class="btn btn-success">ÖDENDİ</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

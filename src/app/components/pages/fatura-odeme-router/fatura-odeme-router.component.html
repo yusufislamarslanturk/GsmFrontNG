@@ -1,0 +1,53 @@
+<button type="button" [class]="classFromParent" data-bs-toggle="modal" [attr.data-bs-target]="'#updateCarModal'+currentFaturaFromParent.faturaId" *ngIf="isAdmin()">
+    {{innerHTML}}
+</button>
+
+<div class="modal fade" [id]="'updateCarModal'+currentFaturaFromParent.faturaId" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ödeme Al</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="updateFormGroup">
+                    <div>
+                        <label for="TC">TC</label>
+                        <select id="TC" name="TC" class="form-select" formControlName="TC">
+                            <option *ngFor="let fatura of faturalar" [value]="fatura.tc">{{fatura.tc}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="faturaId">Fatura Id</label>
+                        <select id="faturaId" name="faturaId" class="form-select" formControlName="faturaId">
+                            <option *ngFor="let fatura of faturalar" [value]="fatura.faturaId">{{fatura.faturaId}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="tarifeUcreti">Tarife Ücreti</label>
+                        <select id="tarifeUcreti" name="tarifeUcreti" class="form-select" formControlName="tarifeUcreti">
+                            <option *ngFor="let fatura of faturalar" [value]="fatura.donemUcreti">{{fatura.donemUcreti}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="tarifeId">Tarife Adı</label>
+                        <select id="tarifeId" name="tarifeId" class="form-select" formControlName="tarifeId">
+                            <option *ngFor="let tarife of tarifeler" [value]="tarife.tarifeId">{{tarife.tarifeAdi}}</option>
+                        </select>
+                    </div>
+                    <div class="mt-2">
+                        <label for="name">Tahsil Tarihi</label>
+                        <input
+                          type="date"
+                          id="tahsilTarihi"
+                          name="tahsilTarihi"
+                          class="form-control"
+                          placeholder="Başlangıç Tarihi"
+                          formControlName="tahsilTarihi"
+                        />
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        <button class="btn btn-success mt-2" (click)="update()" (click)="update2()">Ödeme Al</button>
+                    </div>

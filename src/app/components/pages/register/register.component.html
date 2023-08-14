@@ -1,0 +1,29 @@
+
+    <body class="text-center">
+        <main class="form-signin">
+            <form [formGroup]="registerFormGroup">
+                <img class="mb-4" src="assets/images/logologo.png" alt="" width="180" height="180">
+                <h1 class="h3 mb-3 fw-normal">Kayıt Ol</h1>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="firstName" placeholder="Ad" formControlName="firstName">
+                    <label for="firstName">Ad</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="lastName" placeholder="Soyad" formControlName="lastName">
+                    <label for="lastName">Soyad</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" placeholder="Şifre" formControlName="password">
+                    <label for="password">Şifre</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="register()">Kayıt Ol</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2017–2023</p>
+                <p class="mt-1 mb-3 text-muted">BireyCell</p>
+    
+            </form>
+        </main>
+    </body>

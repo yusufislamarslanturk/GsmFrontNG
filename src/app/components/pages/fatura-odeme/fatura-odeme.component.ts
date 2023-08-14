@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MusteriService } from 'src/app/services/musteri.service';
 import { Tahsilat } from 'src/app/models/entities/tahsilat';
 import { TahsilatService } from 'src/app/services/tahsilat.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-fatura-odeme',
@@ -21,7 +22,9 @@ export class FaturaOdemeComponent
   extends AdminChildComponentBaseComponent
   implements OnInit
 {
-  @Input() currentCarFromParent: Musteri;
+  @Input() 
+  currentCarFromParent: Musteri;
+  currentFaturaFromParent:Tahsilat;
   currentCarFromId: number;
   faturalar: Fatura[];
   musteriler: Musteri[];
@@ -33,29 +36,20 @@ export class FaturaOdemeComponent
     public override authService: AuthService,
     private faturaService: FaturaService,
     private musteriService:MusteriService,
-    private tahsilatService:TahsilatService
+    private tahsilatService:TahsilatService,
+    private routerModule:RouterModule
   ) {
     super(authService);
   }
 
   ngOnInit(): void {
-    this.createUpdateFormGroup();
+    
     this.getFatura();
     this.getMusteri();
     
   }
 
-  createUpdateFormGroup() {
-    this.updateFormGroup = this.formBuilder.group({
-        // tc: [this.currentCarFromParent.tc, Validators.required],
-        // ad: [this.currentCarFromParent.ad, Validators.required],
-        // soyad: [this.currentCarFromParent.soyad, Validators.required],
-        // gsMno: [this.currentCarFromParent.gsMno, Validators.required],
-        // musteriId: [this.currentCarFromParent.musteriId ,Validators.required],
-        // email: [this.currentCarFromParent.email, Validators.required],
-       
-    });
-  }
+ 
   add() {
     if (this.updateFormGroup.valid) {
       let tahsilat: Tahsilat = Object.assign({}, this.updateFormGroup.value);
@@ -83,6 +77,9 @@ export class FaturaOdemeComponent
     this.musteriService.getAll().subscribe((response) => {
       this.musteriler = response.data;
     });
+  }
+  getByIdFromInMemory(id: number): Fatura {
+    return this.faturalar.filter(c => c.faturaId === id)[0]
   }
 
 }

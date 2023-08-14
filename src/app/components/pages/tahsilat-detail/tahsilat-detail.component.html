@@ -1,0 +1,38 @@
+<div class="col-md-12" *ngIf="isAdmin()">
+    <br /><br>
+  
+    <h3>Tahsilat Listesi</h3>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    </div>
+    <br>
+    <input
+      type="text"
+      id="filterText"
+      placeholder="Arama metni giriniz"
+      class="form-control"
+    />
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Tahsilat ID</th>
+          <th>Müşteri T.C. Kimlik Numarası</th>
+          <th>Tarife ID</th>
+          <th>Fatura ID</th>
+          <th>Tahsil Tarihi</th>
+          <th>Tarife Ücreti</th>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tahsilat of tahsilatlar">
+          <td>{{ tahsilat.tahsilatId }}</td>
+          <td>{{ tahsilat.tc }}</td>
+          <td>{{ tahsilat.tarifeId }}</td>
+          <td>{{ tahsilat.faturaId }}</td>
+          <td>{{ tahsilat.tahsilTarihi }}</td>
+          <td>{{ tahsilat.tarifeUcreti }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

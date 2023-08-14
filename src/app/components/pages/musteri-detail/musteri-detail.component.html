@@ -1,0 +1,57 @@
+<div class="col-md-12" *ngIf="isAdmin()">
+    <br /><br>
+  
+    
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <h3 style="margin-right: 850px;">Müşteri Listesi</h3>
+      <app-musteri-ekle
+      classFromParent="btn btn-outline-success"
+    ></app-musteri-ekle>
+    </div>
+    <br>
+    <input
+      type="text"
+      id="filterText"
+      [(ngModel)]="filterText"
+      placeholder="Arama metni giriniz"
+      class="form-control"
+    />
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Müşteri ID</th>
+          <th>Müşteri Adı</th>
+          <th>Müşteri Soyadı</th>
+          <th>Müşteri T.C. Kimlik Numarası</th>
+          <th>Müşteri Telefon Numarası</th>
+          <th>Müşteri Mail Adresi</th>
+          <th>Ek Seçenekler</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let musteri of musteriler|musterilerFilter:filterText">
+          <td>{{ musteri.musteriId }}</td>
+          <td>{{ musteri.ad }}</td>
+          <td>{{ musteri.soyad }}</td>
+          <td>{{ musteri.tc }}</td>
+          <td>{{ musteri.gsMno }}</td>
+          <td>{{ musteri.email }}</td>
+          <td>
+            <app-musteri-guncelle
+              classFromParent="btn btn-warning"
+              [currentMusteriFromParent]="getByIdFromInMemory(musteri.musteriId)"
+            ></app-musteri-guncelle>
+          </td>
+             <td>
+           <app-musteri-delete
+              classFromParent="btn btn-danger"
+              [currentMusteriFromParent]="getByIdFromInMemory(musteri.musteriId)"
+            ></app-musteri-delete>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

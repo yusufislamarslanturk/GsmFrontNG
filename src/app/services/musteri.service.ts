@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiUrl } from '../models/constants/urls';
-import { Observable } from 'rxjs';
+import { Observable,timer } from 'rxjs';
 import { ListResponseModel } from '../models/result/list-response-model';
 import { ResponseModel } from '../models/result/response_model';
 import { Musteri } from '../models/entities/musteri';
@@ -23,7 +23,7 @@ export class MusteriService {
     this.httpClient.post<ResponseModel>(this.url + 'add', musteri).subscribe(
       (response) => {
         this.toastrService.success(response.message);
-        window.location.reload();
+        timer(2000).subscribe(x => {window.location.reload()})
       },
       (errorResponse) => this.templatesService.errorResponse(errorResponse)
     );
@@ -31,8 +31,8 @@ export class MusteriService {
   delete(musteri: Musteri) {
     this.httpClient.post<ResponseModel>(this.url + 'delete', musteri).subscribe(
       (response) => {
-        this.toastrService.success(response.message);
-        window.location.reload();
+       
+        timer(2000).subscribe(x => {window.location.reload()})
       },
       (errorResponse) => this.templatesService.errorResponse(errorResponse)
     );
@@ -41,7 +41,7 @@ export class MusteriService {
     this.httpClient.post<ResponseModel>(this.url + 'update', musteri).subscribe(
       (response) => {
         this.toastrService.success(response.message);
-        window.location.reload();
+        timer(2000).subscribe(x => {window.location.reload()})
       },
       (errorResponse) => this.templatesService.errorResponse(errorResponse)
     );

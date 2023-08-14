@@ -1,7 +1,17 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/logoson.svg" alt="" width="413" height="100">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -9,28 +19,115 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+       
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+          <a
+            class="nav-link dropdown-toggle active"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            İşlemler
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="tarife-detail">Tarife İşlemleri</a></li>
+            <li><a class="dropdown-item" href="musteri-detail">Müşteri İşlemleri</a></li>
+            <li><a class="dropdown-item" href="tarife-ata">Müşteriye Tarife Ata </a></li>
+            <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
+        
+      </ul>
+      <div class="ms-2">
+        <button class="btn btn-outline-success" type="submit">Giriş Yap</button>
+      </div>
+      <div class="ms-2">
+        <button class="btn btn-outline-success" type="submit">Kayıt OL</button>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/logoson.svg" alt="" width="413" height="100" />
+    </a>
+    <a class="navbar-brand"></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <app-administration-dropdown></app-administration-dropdown>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex">
+        <div>
+          <app-route-to-login-page-button
+            classFromParent="btn btn-outline-success"
+          ></app-route-to-login-page-button>
+        </div>
+        <div class="ms-2">
+          <app-route-to-register-page-button
+            classFromParent="btn btn-outline-success"
+          ></app-route-to-register-page-button>
+        </div>
+
+        <div class="btn-group" *ngIf="loggedIn() && currenUserDTO">
+          <button
+            type="button"
+            class="btn btn-danger dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ currenUserDTO.firstName }} {{ currenUserDTO.lastName }}
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <div class="dropdown-item">
+                <div
+                  type="button"
+                  (click)="routeToProfilePage()"
+                  *ngIf="loggedIn()"
+                  [class]="classFromParent"
+                >
+                  Profil Bilgileri
+                </div>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <div class="dropdown-item">
+                <div
+                  type="button"
+                  [class]="classFromParent"
+                  (click)="logout()"
+                  *ngIf="loggedIn()"
+                >
+                  Çıkış Yap
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </form>
     </div>
   </div>
 </nav>
+
+
